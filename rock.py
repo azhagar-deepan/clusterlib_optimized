@@ -7,7 +7,7 @@ from numba import jit
 from scipy.sparse import csr_matrix
 
 # Import the Cython functions
-from rock_cython import compute_adjacency_matrix_cython, label_remaining_points_cython, jaccard_similarity
+from rock_cy import compute_adjacency_matrix_cython, label_remaining_points_cython, jaccard_similarity
 
 warnings.simplefilter(action='ignore', category=FutureWarning)
 
