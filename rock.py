@@ -54,10 +54,13 @@ def calculate_goodness_measure(Ci, Cj, links_matrix, threshold):
     goodness = link_Ci_Cj / ((ni + nj) ** z - ni ** z - nj ** z)
     return goodness
 
-def ROCK(df_original, sample_size=30, k=2, threshold=0.2, representativeness_fraction=0.5, min_cluster_size_percent=0.1, MIN_NEIGHBORS=2, batch_size=100):
+def ROCK(df_original, sample_size=30, k=2, threshold=0.5, representativeness_fraction=1, min_cluster_size_percent=0, MIN_NEIGHBORS=-1, batch_size=5000, random_state=None):
+    
     """ROCK Clustering Algorithm with one consolidated function and Numba optimization."""
+    if random_state is not None:
+        np.random.seed(random_state)
 
-    data = preprocess_data(df_original)  # Preprocess the DataFrame
+    data = preprocess_data(df_original.copy())  # Preprocess the DataFrame
 
     sampled_points = data[np.random.choice(data.shape[0], sample_size, replace=False), :]
 
